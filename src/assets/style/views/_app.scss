@@ -1,0 +1,80 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: ReemKufi;
+    width: 100%;
+    .main-logo {
+        color: $clr1;
+        font-size: 20px;
+        &.router-link-exact-active {
+            color: #1db954;
+        }
+        &:hover {
+            filter: brightness(85%);
+        }
+    }
+    a {
+        transition: .3s;
+        color: $clr2;
+        font-size: 15px;
+        text-transform: uppercase;
+        &.router-link-exact-active {
+            color: #1db954;
+        }
+        &:hover {
+            color: #1db954;
+        }
+    }
+    h1 {
+        font-size: 30px;
+    }
+}
+
+.view-router {
+    width: 100%;
+    overflow-y: auto;
+    background-color: $clr4;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+    img {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+.el-message-box {
+    background-color: $clr4;
+    .el-message-box__header {
+        color: $clr1;
+    }
+    &:first-child {
+        background-color: $clr4;
+        &>* {
+            color: $clr1;
+        }
+        .el-message-box__title {
+            color: $clr1;
+        }
+        .el-message-box__headerbtn {
+            display: flex;
+            padding: 5px;
+        }
+    }
+    button {
+        &:nth-child(even) {
+            background-color: black;
+        }
+        &:hover {
+            box-shadow: 0px 0px 10px 5px white;
+        }
+    }
+}

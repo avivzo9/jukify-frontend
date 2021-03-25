@@ -1,0 +1,16 @@
+.profile-container {
+    height: 100%;
+    width: 100%;
+    .profile-sub-container {
+        width: 50%;
+        height: 80%;
+        background-color: #5e5e5e;
+        border: 1px solid $clr2;
+    }
+}
+
+.login-form {
+    input {
+        margin: 10px;
+    }
+}

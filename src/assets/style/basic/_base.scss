@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+    color: $clr2;
+    background-color: $clr3;
+}
+
+html {
+    line-height: 1.6;
+    font-family: ReemKufi;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 1rem;
+    font-weight: 500;
+    font-family: ReemKufi;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    font-family: ReemKufi;
+}
+
+button {
+    font-family: ReemKufi;
+    cursor: pointer;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 10px;
+    transition: .3s;
+    padding: 1em;
+    margin: 1em;
+    color: $clr5;
+    background-color: white;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        color: white;
+        background-color: $clr5;
+        border-color: $clr1;
+    }
+}
+
+input {
+    padding: 1em;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    &:hover {
+        border: 1px solid #C0C4CC;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+iframe {
+    width: 100%;
+    max-width: 0px;
+    height: 0;
+}
+
+textarea {
+    &:focus {
+        outline: none;
+    }
+}

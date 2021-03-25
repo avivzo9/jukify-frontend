@@ -1,0 +1,54 @@
+.home-cards-container {
+    margin-bottom: 2em;
+    width: 100%;
+    height: 100%;
+    h1 {
+        margin-top: 15px;
+        font-size: 35px;
+    }
+    .home-genre-container {
+        width: 100%;
+        overflow: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        &:first-child {
+            margin: 0;
+            font-size: 30px;
+        }
+    }
+}
+
+.Hero-Img {
+    width: 100%;
+    height: 100vh;
+}
+
+.home-page-container {
+    width: 100%;
+    // height: 100vh;
+}
+
+.hero-container {
+    width: 100%;
+    height: 480px;
+    background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2100&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: center;
+    background-attachment: fixed;
+    .hero-header {
+        font-size: 40px;
+        color: $clr2;
+        text-transform: uppercase;
+        transition: .4s;
+        letter-spacing: 1.15px;
+        &:hover {
+            letter-spacing: 2.15px;
+            color: $clr1;
+            font-size: 45px;
+        }
+    }
+}

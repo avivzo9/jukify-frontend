@@ -1,0 +1,21 @@
+.filter-genre-container {
+    margin: 1em;
+    margin-top: 0;
+    >* {
+        width: 80px;
+    }
+}
+
+.clicked-filter-btn {
+    color: white;
+    background-color: $clr5;
+    border-color: $clr1;
+}
+
+.filter-container {
+     :first-child {
+        input {
+            border-radius: 10px;
+        }
+    }
+}
