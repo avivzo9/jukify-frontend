@@ -84,7 +84,7 @@ const gStations = [{
         genres: ["israeli"],
         msg: [],
         imgUrl: "https://www.tedy.co.il/f-users/user_106098/website_106273/images/nathan-shows.png",
-        likes: 0,
+        likes: 122,
         name: "Nathan Goshen",
         songs: [],
     },
