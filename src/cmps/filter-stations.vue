@@ -8,11 +8,11 @@
         v-model="filterBy.byName"
       />
     </div>
-    <button :class="isClicked('popular')" @click="genreSelect('popular')">
-      Popular
-    </button>
-    <div class="filter-genre-container">
+    <div class="filter-genre-container row-layout-container">
       <button :class="isClicked('all')" @click="genreSelect('all')">All</button>
+      <button :class="isClicked('popular')" @click="genreSelect('popular')">
+        Popular
+      </button>
       <button
         v-for="(genre, idx) in genres"
         :key="idx"
@@ -38,9 +38,11 @@ export default {
     };
   },
   methods: {
-    filterSong() {
-      const filter = this.filterBy;
-      this.$store.dispatch({ type: "setFilter", filter });
+    async filterSong() {
+      try {
+        const filter = this.filterBy;
+        await this.$store.dispatch({ type: "setFilter", filter });
+      } catch {}
     },
     genreSelect(genre) {
       if (genre === "popular") {
@@ -63,11 +65,17 @@ export default {
     genres() {
       return this.$store.state.stationStore.genres;
     },
-
     showGenre() {
       this.genre.charAt(0);
       return this.genre;
     },
+  },
+  mounted() {
+    if (!this.$store.state.stationStore.filterBy.byGenre) return
+    this.filterBy.byGenre = this.$store.state.stationStore.filterBy.byGenre;
+    this.genreSelect(this.$store.state.stationStore.filterBy.byGenre);
+    const resetGenre = ''
+    this.$store.dispatch({ type: "updateGenreFilter", resetGenre });
   },
 };
 </script>

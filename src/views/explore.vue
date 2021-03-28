@@ -110,6 +110,7 @@ export default {
   data() {
     return {
       isLoading: true,
+      filter: null,
     };
   },
   computed: {
@@ -121,11 +122,6 @@ export default {
     loading(val) {
       this.isLoading = val;
     },
-  },
-  created() {
-    const filter=this.$route.params.genre;
-    console.log('this.$route.params:', this.$route.params)
-    console.log('filter:', filter)
   },
   components: {
     stationList,

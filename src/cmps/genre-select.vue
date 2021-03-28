@@ -29,6 +29,34 @@ export default {
           value: "band",
           label: "Band",
         },
+        {
+          value: "chill",
+          label: "Chill",
+        },
+        {
+          value: "pop",
+          label: "Pop",
+        },
+        {
+          value: "latin",
+          label: "Latin",
+        },
+        {
+          value: "rock",
+          label: "Rock",
+        },
+        {
+          value: "blues",
+          label: "Blues",
+        },
+        {
+          value: "house",
+          label: "House",
+        },
+        {
+          value: "jazz",
+          label: "Jazz",
+        },
       ],
       value1: []
     };

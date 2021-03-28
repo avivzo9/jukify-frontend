@@ -1,8 +1,12 @@
 .explore-container {
     margin-top: 1em;
     .explore-header {
+        >* {
+            margin: 0;
+        }
         h1 {
             font-size: 35px;
+            color: $clr1;
         }
     }
     .station-list-container {

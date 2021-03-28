@@ -4,8 +4,13 @@ export const stationStore = {
     strict: true,
     state: {
         stations: [],
-        genres: ["Hip-Hop", "Band", "Israeli"],
-        filterBy: null,
+        genres: ["Hip-Hop", "Band", "Israeli", "Pop", "Rock", "Blues", "House", "Jazz", "Chill", "Latin"],
+        homeGenres: ["Hip-Hop", "Band", "Israeli"],
+        filterBy: {
+            byName: "",
+            byGenre: "",
+            byPopular: false,
+        },
         currStation: null
     },
     mutations: {
@@ -27,6 +32,9 @@ export const stationStore = {
         },
         addStation(state, { stationToAdd }) {
             state.stations.push(stationToAdd)
+        },
+        updateGenreFilter(state, { genre }) {
+            state.filterBy.byGenre = genre
         },
         addStationLike(state, { addLike }) {
             const station = state.stations.find((s) => s._id === addLike.station)
@@ -94,9 +102,13 @@ export const stationStore = {
         },
         async setFilter({ commit }, { filter }) {
             try {
-                console.log('filter:', filter)
                 const stations = await stationService.query(filter)
                 commit({ type: 'setStations', stations })
+            } catch {}
+        },
+        async updateGenreFilter({ commit }, { genre }) {
+            try {
+                commit({ type: 'updateGenreFilter', genre })
             } catch {}
         },
         async shuffleSongs({ commit }, { stationId }) {
@@ -111,7 +123,7 @@ export const stationStore = {
                 commit({ type: 'addStationMsg', stationMsgsAdd })
             } catch {}
         },
-        async updateSongs( {commit} ,  {draggedSongs} ) {
+        async updateSongs({ commit }, { draggedSongs }) {
             try {
                 const stationOrdered = await stationService.updateSongs(draggedSongs)
                 commit({ type: 'updateSongs', stationOrdered })

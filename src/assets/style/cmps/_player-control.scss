@@ -193,12 +193,13 @@ input[type=range] {
 
 @include for-mobile-layout {
     .song-player {
-        grid-template-columns: 54.7vw 27.3vw;
+        grid-template-columns: 1fr 33vw;
         .song-image {
             display: none;
         }
         .playing-now {
             grid-column: 1/2;
+            margin-left: 3vw;
             h3 {
                 font-size: 17px;
                 margin: 0;
@@ -208,18 +209,19 @@ input[type=range] {
             grid-column: 2/3;
             .playing-btns {
                 width: 100%;
+                margin-right: 5vw;
                 >* {
-                    width: 20px;
-                    height: 20px;
-                    margin: 15px;
+                    width: 25px;
+                    height: 25px;
+                    margin: 20px;
                     transition: 0.3s;
                     &:hover {
                         color: $clr1;
                     }
                 }
                  :nth-child(2) {
-                    width: 20px;
-                    height: 20px;
+                    width: 25px;
+                    height: 25px;
                 }
             }
             .duration-song {

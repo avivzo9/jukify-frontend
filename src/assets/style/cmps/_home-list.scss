@@ -20,9 +20,10 @@
         min-height: 300px;
         min-width: 200px;
         margin: 1em;
-        border-radius: 25px;
+        border-radius: 10px;
         transition: .3s;
         &:hover {
+            transform: translateY(-10px);
             box-shadow: 0px 0px 7px 1px white;
             border: 1px solid $clr1;
         }
@@ -63,5 +64,3 @@
         }
     }
 }
-
-@include for-mobile-layout {}

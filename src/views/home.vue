@@ -104,13 +104,10 @@
         v-for="(genre, idx) in genres"
         :key="idx"
       >
-        <h2>{{ genre }}</h2>
-        <router-link
-          class="link"
-          @click="genreUrl(genre)"
-          :to="'/explore/'+genreUrl(genre)"
-          >See All</router-link
-        >
+        <div class="genre-header row-layout-container">
+          <h2>{{ genre }}</h2>
+          <button @click="sendToGenre(genre)">See All</button>
+        </div>
         <home-list :genre="genre" @loader="loading" />
       </div>
     </div>
@@ -127,16 +124,16 @@ export default {
   },
   computed: {
     genres() {
-      return this.$store.state.stationStore.genres;
+      return this.$store.state.stationStore.homeGenres;
     },
-   
   },
   methods: {
     loading(val) {
       this.isLoading = val;
     },
-     genreUrl(genre) {
-      return genre.toLowerCase();
+    sendToGenre(genre) {
+      this.$store.dispatch({ type: "updateGenreFilter", genre });
+      this.$router.push("/explore");
     },
   },
   components: {

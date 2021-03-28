@@ -1,60 +1,91 @@
 <template>
   <section class="profile-container column-layout-container">
-    <div class="profile-sub-container column-layout-container">
-      <div
-        class="login-container login-form column-layout-container"
-        v-if="!$store.state.userStore.user"
-      >
-        <div v-if="!isSignup">
-          <button @click="toLogin">Login</button>
+    <div class="profile-sub-container row-layout-container">
+      <div class="website-desc column-layout-container">
+        <h1>Welcome to Jukify.</h1>
+        <h3>
+          Create your own station and share it<br />
+          live all over the world!<br />
+          Start now for free.
+        </h3>
+      </div>
+      <div class="login-container column-layout-container">
+        <div class="form header">
+          <h2 v-if="isLogin">Login</h2>
+          <h2 v-else-if="isSignup">Sign-Up</h2>
         </div>
-        <form v-if="isLogin" @submit.prevent="login">
-          <input
-            type="text"
-            v-model="userLogin.username"
-            placeholder="Enter UserName"
-          />
-          <input
-            type="password"
-            v-model="userLogin.password"
-            placeholder="Enter Password"
-          />
-          <button>login</button>
-        </form>
-        <!-- <button v-if="$store.getters.getUser" @click="logout">logout</button> -->
-      </div>
-      <div
-        class="sign-up-container login-form column-layout-container"
-        v-if="!$store.state.userStore.user"
-      >
-        <div v-if="!isLogin">
-          <button @click="toSignup">Sign-Up</button>
+        <div
+          class="login-form column-layout-container"
+          v-if="!$store.state.userStore.user"
+        >
+          <form
+            class="column-layout-container"
+            v-if="isLogin"
+            @submit.prevent="login"
+          >
+            <input
+              required
+              type="text"
+              v-model="userLogin.username"
+              placeholder="Username"
+            />
+            <input
+              required
+              type="password"
+              v-model="userLogin.password"
+              placeholder="Password"
+            />
+            <button>Login</button>
+          </form>
+          <p class="changeTo" v-if="isLogin" @click="toSignup">
+            Don't have an account? Click to Sign-up
+          </p>
+          <!-- <button v-if="$store.getters.getUser" @click="logout">logout</button> -->
         </div>
-        <form v-if="isSignup" @submit.prevent="signup">
-          <input
-            type="text"
-            v-model="userSignup.fullname"
-            placeholder="Enter Full Name:"
-          />
-          <input
-            type="text"
-            v-model="userSignup.username"
-            placeholder="Enter UserName"
-          />
-          <input
-            type="password"
-            v-model="userSignup.password"
-            placeholder="Enter Password"
-          />
-          <button>Sign-Up</button>
-        </form>
+        <div
+          class="sign-up-container login-form column-layout-container"
+          v-if="!$store.state.userStore.user"
+        >
+          <div v-if="!isSignup && !isLogin">
+            <button @click="toSignup">Sign-Up</button>
+          </div>
+          <form
+            class="column-layout-container"
+            v-if="isSignup"
+            @submit.prevent="signup"
+          >
+            <input
+              required
+              type="text"
+              v-model="userSignup.fullname"
+              placeholder="Full name"
+            />
+            <input
+              required
+              type="text"
+              v-model="userSignup.username"
+              placeholder="Username"
+            />
+            <input
+              required
+              type="password"
+              v-model="userSignup.password"
+              placeholder="Password"
+            />
+            <button>Sign-Up</button>
+          </form>
+          <p class="changeTo" v-if="isSignup" @click="toLogin">
+            Have an account? Click to Login
+          </p>
+        </div>
+        <div v-if="$store.getters.getUser">
+          {{ $store.getters.getUser.fullname }} is logged in
+        </div>
+        <div v-else>{{ $store.getters.getMsgToUser }}</div>
+        <button v-if="$store.state.userStore.user" @click="logout">
+          logout
+        </button>
       </div>
-      <div v-if="$store.getters.getUser">
-        {{ $store.getters.getUser.fullname }} is logged in
-      </div>
-      <div v-else>{{ $store.getters.getMsgToUser }}</div>
-      <button @click="closeAll">Back</button>
-      <button v-if="$store.state.userStore.user" @click="logout">logout</button>
     </div>
   </section>
 </template>
@@ -73,7 +104,7 @@ export default {
         username: "",
         password: "",
       },
-      isLogin: false,
+      isLogin: true,
       isSignup: false,
     };
   },
@@ -153,7 +184,7 @@ export default {
           });
         } else {
           this.$message({
-          type: "warning",
+            type: "warning",
             message: "something went wrong, please try again later",
           });
         }

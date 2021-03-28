@@ -3,8 +3,8 @@
     display: grid;
     width: 100%;
     height: 100vh;
-    grid-template-columns: 1fr 93rem 1fr;
-    grid-template-rows: 60px 1fr 110px;
+    grid-template-columns: 1fr 97vw 1fr;
+    grid-template-rows: 8.4vh 1fr 15.3vh;
     >* {
         grid-column: 2;
     }
@@ -33,7 +33,7 @@
 
 @include for-mobile-layout {
     .main-layout {
-        grid-template-columns: 9vw 82vw 9vw;
-        grid-template-rows: 13.8vh 72.4vh 13.8vh;
+        grid-template-columns: 1fr 98vw 1fr;
+        grid-template-rows: 1fr 72.4vh 1fr;
     }
 }

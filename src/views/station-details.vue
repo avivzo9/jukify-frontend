@@ -67,8 +67,11 @@
         />
       </div>
     </div>
-    <div class="chat-room column-layout-container">
-      <station-chat :currStation="currStation" />
+    <div
+      :style="{ display: opacityForChat }"
+      class="chat-room column-layout-container"
+    >
+      <station-chat @close-chat="toggleChat" :currStation="currStation" />
     </div>
     <div class="songs-container row-layout-container">
       <div v-if="currStation" class="station-songs-container">
@@ -82,9 +85,9 @@
               <div class="song-desc row-layout-container">
                 <img :src="song.img" />
                 <p>{{ song.name }}</p>
-                <!-- {{ songNameDisplay(song) }} -->
               </div>
-              <div class="sog-menu-container">
+              <!-- <font-awesome-icon icon="arrows-alt-v" /> -->
+              <div class="row-layout-container">
                 <font-awesome-icon
                   v-if="isSongDelete"
                   class="delete-song"
@@ -136,6 +139,7 @@ export default {
       isChat: false,
       isDelete: false,
       isSongDelete: false,
+      chatOpacity: false,
     };
   },
   methods: {
@@ -342,6 +346,9 @@ export default {
     showDeleteSong() {
       this.isSongDelete = !this.isSongDelete;
     },
+    toggleChat() {
+      this.chatOpacity = !this.chatOpacity;
+    },
   },
   computed: {
     myList: {
@@ -371,6 +378,9 @@ export default {
     penClass() {
       return this.isSongDelete ? "#1db954" : "";
     },
+    opacityForChat() {
+      // return (this.chatOpacity) ? 'block' : 'none';
+    }
   },
   async created() {
     try {

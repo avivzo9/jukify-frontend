@@ -3,6 +3,10 @@
     margin-top: 0;
     >* {
         width: 80px;
+        border-radius: 30px 30px 0 0;
+        &:hover {
+            transform: translateY(-5px);
+        }
     }
 }
 
@@ -16,6 +20,8 @@
      :first-child {
         input {
             border-radius: 10px;
+            width: 30em;
+            color: $clr1;
         }
     }
 }

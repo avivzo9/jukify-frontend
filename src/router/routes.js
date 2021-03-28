@@ -19,7 +19,7 @@ const routes = [{
         component: profileProfile
     },
     {
-        path: '/explore/:genre',
+        path: '/explore',
         name: 'explore',
         component: explore
     },

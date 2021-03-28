@@ -51,7 +51,6 @@ async function query(filterBy = {}) {
         if (filterBy.byName) query += 'name=' + filterBy.byName + '&'
         if (filterBy.byGenre) query += 'genre=' + filterBy.byGenre + '&'
         if (filterBy.byPopular) query += 'popular=' + filterBy.byPopular + '&'
-        console.log('query:', KEY + query)
         return await httpService.get(KEY + query)
     } catch (err) {
         console.log('Error from stationService - ', err);

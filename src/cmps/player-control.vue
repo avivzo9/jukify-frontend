@@ -4,6 +4,11 @@
       <youtube :video-id="songId" ref="youtube"></youtube>
     </div>
     <img v-if="song" :src="songImage" alt="" :class="imgRotate" />
+    <img
+      v-else
+      src="https://images.macrumors.com/t/tCPS-yWwAQ_siFOl14cUWLHEw1c=/400x0/filters:quality(90)/article-new/2018/05/apple-music-note-800x420.jpg?lossy"
+      :class="imgRotate"
+    />
     <div class="playing-now row-layout-container" v-if="song">
       <h3>{{ song }}</h3>
     </div>
@@ -159,8 +164,8 @@ export default {
               seconds = 0;
             }
             if (seconds < 10)
-              this.songPlayer.formattedTime =  minutes + ":0" + seconds;
-            else this.songPlayer.formattedTime =  minutes + ":" + seconds;
+              this.songPlayer.formattedTime = minutes + ":0" + seconds;
+            else this.songPlayer.formattedTime = minutes + ":" + seconds;
             this.songPlayer.currTime = duration.toFixed(0);
           });
         }, 100);

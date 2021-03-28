@@ -2,7 +2,7 @@
   <div class="chat-room-container" v-if="currStation">
     <div class="chat-header row-layout-container">
       <h2>Wall</h2>
-      <font-awesome-icon icon="plus" class="close-chat" />
+      <font-awesome-icon icon="plus" class="close-chat" @click="closeChat" />
     </div>
     <ul v-if="currStation.msgs.length" id="messages">
       <li v-for="(msg, idx) in msgs" :key="idx">
@@ -62,6 +62,9 @@ export default {
     changeTopic(id) {
       socketService.emit("chat topic", id);
     },
+    closeChat() {
+      this.$emit('close-chat')
+    }
   },
   computed: {
     msgs() {
