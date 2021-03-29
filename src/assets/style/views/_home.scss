@@ -58,3 +58,15 @@
         }
     }
 }
+
+@include for-mobile-layout {
+    .home-cards-container {
+        .home-genre-container {
+            .genre-header {
+                button {
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

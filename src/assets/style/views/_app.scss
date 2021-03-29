@@ -115,6 +115,9 @@
 
 @include for-mobile-layout {
     .nav {
+        .main-logo {
+            margin-left: 2vw;
+        }
         .nav-content {
             display: flex;
             justify-content: flex-start;

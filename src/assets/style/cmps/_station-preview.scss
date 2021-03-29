@@ -56,3 +56,11 @@
         }
     }
 }
+
+@include for-mobile-layout {
+    .station-preview-container {
+        .station-card {
+            width: 175px;
+        }
+    }
+}

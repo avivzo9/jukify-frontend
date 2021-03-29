@@ -21,6 +21,31 @@
         input {
             border-radius: 10px;
             width: 30em;
+            color: $clr1;
+        }
+    }
+}
+
+@include for-mobile-layout {
+    .filter-genre-container {
+        max-width: 88vw;
+        display: -webkit-box;
+        overflow: auto;
+        margin-top: 2vh;
+         :first-child {
+            margin-left: 0;
+        }
+        >* {
+            display: list-item;
+            min-width: 80px;
+        }
+    }
+    .filter-container {
+         :first-child {
+            input {
+                margin-top: 2vh;
+                width: 90vw;
+            }
         }
     }
 }
