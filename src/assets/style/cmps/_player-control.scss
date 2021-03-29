@@ -83,6 +83,10 @@
     }
 }
 
+.el-slider__bar {
+    background-color: $clr1 !important;
+}
+
 .rotating {
     animation: rotating 5s linear infinite;
 }

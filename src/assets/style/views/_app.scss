@@ -16,6 +16,7 @@
         }
         img {
             width: 80px;
+            padding: 5px 5px 5px 0;
             height: 60px;
         }
     }
@@ -58,6 +59,9 @@
     span {
         cursor: pointer;
         font-size: 30px;
+        &:hover {
+            color: $clr1;
+        }
     }
 }
 
