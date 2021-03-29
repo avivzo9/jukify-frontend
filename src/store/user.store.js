@@ -1,9 +1,8 @@
-
 import { userService } from '../services/userService.js'
 export const userStore = {
     strict: true,
     state: {
-        user: userService.getLoggedinUser()||'guest',
+        user: 'guest',
         msgToUser: null
     },
     getters: {

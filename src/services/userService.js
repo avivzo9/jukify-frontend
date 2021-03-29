@@ -2,13 +2,15 @@ import { httpService } from './http.service.js'
 const KEY = 'loggedinUser'
 
 var gUser = null;
-// _loadUserFromStorage();
+_loadUserFromStorage();
 
 export const userService = {
     getLoggedinUser,
     saveUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    saveUserToStorage,
+    loadUserFromStorage
 }
 
 function getLoggedinUser() {
@@ -35,21 +37,17 @@ async function loginUser(user) {
 async function logoutUser() {
     try {
         gUser = null
-        _saveUserToStorage()
+        saveUserToStorage()
         return httpService.post('auth/logout')
     } catch (err) {
         throw err
     }
 }
 
-function _saveUserToStorage() {
+function saveUserToStorage() {
     sessionStorage.setItem(KEY, JSON.stringify(gUser))
 }
 
-function _loadUserFromStorage() {
+function loadUserFromStorage() {
     gUser = JSON.parse(sessionStorage.getItem(KEY))
-    if (!gUser) {
-        gUser = { _id: 'u101', fullname: 'Hadar Marom', username: 'Hadar' }
-        _saveUserToStorage();
-    }
 }
