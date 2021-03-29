@@ -2,7 +2,7 @@ import { httpService } from './http.service.js'
 const KEY = 'loggedinUser'
 
 var gUser = null;
-_loadUserFromStorage();
+loadUserFromStorage();
 
 export const userService = {
     getLoggedinUser,

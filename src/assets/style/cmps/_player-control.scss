@@ -193,7 +193,7 @@ input[type=range] {
 
 @include for-mobile-layout {
     .song-player {
-        grid-template-columns: 1fr 33vw;
+        grid-template-columns: 60vw 40vw;
         .song-image {
             display: none;
         }
