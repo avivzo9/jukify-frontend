@@ -120,6 +120,9 @@
     .nav {
         .main-logo {
             margin-left: 2vw;
+            img {
+                width: 30vw;
+            }
         }
         .nav-content {
             display: flex;

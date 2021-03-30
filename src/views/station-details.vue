@@ -388,7 +388,6 @@ export default {
   },
   async created() {
     try {
-      console.log("this.isLoading:", this.isLoading);
       await this.$store.dispatch({ type: "loadStations" });
       const id = this.$route.params.stationName;
       await this.$store.dispatch({ type: "setCurrStation", id });
@@ -402,7 +401,6 @@ export default {
       socketService.on("station shuffleSongs", this.shuffleSongsForSockets);
       socketService.on("station drag-n-drop", this.setDragNDropForSockets);
       this.debounceInput = this.debounce(this.searchSongs);
-      console.log("this.isLoading:", this.isLoading);
     } catch {}
   },
   destroyed() {

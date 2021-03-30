@@ -66,6 +66,9 @@ export const playerStore = {
             const nextSong = state.currStation.songs[songIdx];
             state.songId = nextSong.videoId;
             state.songPlayer.songName = nextSong.name;
+            state.songPlayer.songImg = nextSong.img;
+            console.log('state.songPlayer:', state.songPlayer)
+            console.log('nextSong:', nextSong)
         },
         muteSong(state) {
             if (!state.songPlayer.isMuted) {
