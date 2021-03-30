@@ -1,0 +1,19 @@
+{
+    "name": "Jukify",
+    "short_name": "Jukify",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Live stations.",
+    "icons": [{
+            "src": "./assets/img/logo1.jpg",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "./assets/img/logo1.jpg",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ]
+}
