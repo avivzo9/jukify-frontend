@@ -1,5 +1,6 @@
 <template>
   <section class="details-container" v-if="currStation">
+    
     <div class="station-details column-layout-container">
       <div class="station-img column-layout-container">
         <img :src="currStation.imgUrl" />
@@ -67,15 +68,12 @@
         />
       </div>
     </div>
-    <div
-      :style="{ display: opacityForChat }"
-      class="chat-room column-layout-container"
-    >
+    <div class="chat-room column-layout-container">
       <station-chat @close-chat="toggleChat" :currStation="currStation" />
     </div>
     <div class="songs-container row-layout-container">
       <div v-if="currStation" class="station-songs-container">
-        <ul>
+        <ul v-if="currStation.songs.length">
           <draggable v-model="myList">
             <li
               @click="playVideo(song.videoId)"
@@ -86,7 +84,6 @@
                 <img :src="song.img" />
                 <p>{{ song.name }}</p>
               </div>
-              <!-- <font-awesome-icon icon="arrows-alt-v" /> -->
               <div class="row-layout-container">
                 <font-awesome-icon
                   v-if="isSongDelete"
@@ -99,6 +96,7 @@
             </li>
           </draggable>
         </ul>
+        <h1 v-else>It looks like that station doesn't have any songs yet.</h1>
       </div>
       <div
         class="songs-result-container"
@@ -117,6 +115,11 @@
       </div>
     </div>
   </section>
+  <div v-else class="loader-container row-layout-container">
+      <img
+        src="../assets/img/loader.gif"
+      />
+    </div>
 </template>
 
 <script>
@@ -140,6 +143,7 @@ export default {
       isDelete: false,
       isSongDelete: false,
       chatOpacity: false,
+      isLoading: true,
     };
   },
   methods: {
@@ -315,7 +319,7 @@ export default {
         this.playVideo();
       } catch {}
     },
-    debounce(func, wait = 500) {
+    debounce(func, wait = 1000) {
       let timeout;
       return function (...args) {
         const later = () => {
@@ -381,15 +385,14 @@ export default {
     penClass() {
       return this.isSongDelete ? "#1db954" : "";
     },
-    opacityForChat() {
-      // return (this.chatOpacity) ? 'block' : 'none';
-    },
   },
   async created() {
     try {
+      console.log("this.isLoading:", this.isLoading);
       await this.$store.dispatch({ type: "loadStations" });
       const id = this.$route.params.stationName;
-      this.$store.dispatch({ type: "setCurrStation", id });
+      await this.$store.dispatch({ type: "setCurrStation", id });
+      this.isLoading = false;
       this.currStation = this.$store.state.stationStore.currStation;
       this.changeTopic(this.currStation._id);
       socketService.on("station change-song", this.playSongForSockets);
@@ -399,6 +402,7 @@ export default {
       socketService.on("station shuffleSongs", this.shuffleSongsForSockets);
       socketService.on("station drag-n-drop", this.setDragNDropForSockets);
       this.debounceInput = this.debounce(this.searchSongs);
+      console.log("this.isLoading:", this.isLoading);
     } catch {}
   },
   destroyed() {

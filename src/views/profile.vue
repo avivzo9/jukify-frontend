@@ -40,7 +40,6 @@
           <p class="changeTo" v-if="isLogin" @click="toSignup">
             Don't have an account? Click to Sign-up
           </p>
-          <!-- <button v-if="$store.getters.getUser" @click="logout">logout</button> -->
         </div>
         <div
           class="sign-up-container login-form column-layout-container"

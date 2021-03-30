@@ -15,7 +15,7 @@
             filter: brightness(85%);
         }
         img {
-            width: 80px;
+            width: 9vw;
             padding: 5px 5px 5px 0;
             height: 60px;
         }
@@ -76,15 +76,6 @@
     }
 }
 
-.loading {
-    width: 100%;
-    height: 100%;
-    img {
-        width: 350px;
-        height: 350px;
-    }
-}
-
 .el-message-box {
     background-color: $clr4;
     .el-message-box__header {
@@ -110,6 +101,18 @@
         &:hover {
             border: 1px solid $clr1;
         }
+    }
+}
+
+.loader-container {
+    position: absolute;
+    top: 8.3vh;
+    width: 97vw;
+    height: 76.4vh;
+    background-color: $clr4;
+    img {
+        width: 40vw;
+        height: 100%;
     }
 }
 
@@ -140,6 +143,16 @@
             margin-right: 10px;
             font-size: 35px;
             display: block;
+        }
+    }
+    .loader-container {
+        top: 13.8vh;
+        right: 0;
+        width: 99vw;
+        height: 72.6vh;
+        background-color: $clr4;
+        img {
+            width: 100%;
         }
     }
 }

@@ -4,8 +4,8 @@ export const stationStore = {
     strict: true,
     state: {
         stations: [],
-        genres: ["Hip-Hop", "Band", "Israeli", "Pop", "Rock", "Blues", "House", "Jazz", "Chill", "Latin"],
-        homeGenres: ["Hip-Hop", "Band", "Israeli"],
+        genres: ["Hip-Hop", "Band", "Israeli", "Pop", "Rock", "Techno", "House", "Jazz", "Chill", "Latin"],
+        homeGenres: ["Hip-Hop", "Latin", "Israeli", "Techno", "Band"],
         filterBy: {
             byName: "",
             byGenre: "",

@@ -3,7 +3,7 @@
     <section class="container">
       <div class="nav sub-container">
         <div>
-          <router-link class="main-logo link" to="/"> <img class="logo-image" height="45px" width="65.5" src="http://www.88bit.net/img/Jukify_outline_white.png" alt=""></router-link>
+          <router-link class="main-logo link" to="/"> <img class="logo-image" src="~@/assets/img/jukify-logo.png"></router-link>
         </div>
           <span @click="isMenu = !isMenu" class="menu">☰</span>
         <div @click="isMenu = false" :style="{'max-width': menuDisplay}" class="nav-content">
@@ -28,7 +28,7 @@ import playerControl from "./cmps/player-control";
 export default {
   data() {
     return {
-      isMenu: false
+      isMenu: false,
     }
   },
   computed: {

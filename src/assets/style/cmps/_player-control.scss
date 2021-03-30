@@ -5,10 +5,11 @@
 
 .song-player {
     display: grid;
-    grid-template-columns: 150px 1fr 1fr 1fr;
+    grid-template-columns: 150px 22.5vw 1fr 1fr;
     height: 100%;
     width: 100%;
     background-color: inherit;
+    border-top: 1px solid #8080806e;
     .song-video {
         display: none;
     }
@@ -31,6 +32,7 @@
         text-overflow: ellipsis;
         h3 {
             margin: 0;
+            font-size: 18px;
         }
     }
     .main-player-section {

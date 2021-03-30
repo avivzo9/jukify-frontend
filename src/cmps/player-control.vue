@@ -67,7 +67,7 @@ export default {
         currTime: null,
         duration: null,
         songLength: null,
-        formattedTime: null,
+        formattedTime: '0:00',
       },
     };
   },
@@ -140,10 +140,7 @@ export default {
       return this.$store.getters.getSongImage;
     },
     song() {
-      var song = JSON.parse(JSON.stringify(this.$store.getters.getSongName));
-      if (!song) return;
-      const name = song.slice(0, 30) + "...";
-      return name;
+      return this.$store.getters.getSongName;
     },
     imgRotate() {
       return this.$store.state.playerStore.songPlayer.isPlaying
@@ -157,7 +154,7 @@ export default {
         this.player.playVideo();
         setInterval(() => {
           this.player.getCurrentTime().then((duration) => {
-            if (!duration) return;
+            if (!duration) return
             var minutes = Math.floor(parseInt(duration.toFixed(0)) / 60);
             var seconds = parseInt(duration.toFixed(0)) - minutes * 60;
             if (duration - minutes * 60 > 59.9) {

@@ -27,8 +27,9 @@
       <div class="right-side-container column-layout-container">
         <form @submit.prevent="addStation">
           <input
+            required
             type="text"
-            maxlength="17"
+            maxlength="28"
             placeholder="Station name"
             v-model="newStation.name"
           />
@@ -71,6 +72,13 @@ export default {
     },
     async addStation() {
       try {
+        if (!this.newStation.genres.length) {
+          this.$message.warning({
+            message:
+              "Oops, you forgot to select genre, please select genre.",
+          });
+          return;
+        }
         if (!this.imgSrc)
           this.imgSrc =
             "https://images.macrumors.com/t/tCPS-yWwAQ_siFOl14cUWLHEw1c=/400x0/filters:quality(90)/article-new/2018/05/apple-music-note-800x420.jpg?lossy";

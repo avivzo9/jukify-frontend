@@ -19,6 +19,11 @@
         <home-list :genre="genre" @loader="loading" />
       </div>
     </div>
+    <div v-if="isLoading" class="loader-container row-layout-container">
+      <img
+        src="../assets/img/loader.gif"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -36,8 +41,8 @@ export default {
     },
   },
   methods: {
-    loading(val) {
-      this.isLoading = val;
+    loading() {
+      this.isLoading = false;
     },
     sendToGenre(genre) {
       this.$store.dispatch({ type: "updateGenreFilter", genre });

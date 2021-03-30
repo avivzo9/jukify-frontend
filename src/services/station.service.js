@@ -4,7 +4,7 @@ import { gStations } from '../data/station'
 import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
 
-const API = 'AIzaSyAw9w3LHiai8ET2O2DIWA34fVjkrQBIanQ'
+const API = 'AIzaSyCQRxkPwj5J_9uW0J8F17TBj5dSlklCPD0'
 const SONGS_KEY = 'songs-results'
 const KEY = 'station/'
 
@@ -31,10 +31,9 @@ async function askSearch(txt) {
             return Promise.resolve(songs);
         }
         console.log('api...');
-        return axios.get(`https://www.googleapis.com/youtube/v3/search?maxResults=10&part=snippet&videoEmbeddable=true&type=video&key=${API}&q=${txt}`)
+        return axios.get(`https://www.googleapis.com/youtube/v3/search?maxResults=20&part=snippet&videoEmbeddable=true&type=video&key=${API}&q=${txt}`)
             .then(res => {
                 storageService.postMany(`${SONGS_KEY}_${txt}`, res.data.items);
-                console.log('res.data.items:', res.data.items)
                 return res.data.items;
             })
             .catch(err => {
