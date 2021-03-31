@@ -7,6 +7,11 @@
     <div class="station-list-container row-layout-container">
       <station-list @loader="loading" />
     </div>
+    <div v-if="isLoading" class="loader-container row-layout-container">
+      <img
+        src="../assets/img/loader.gif"
+      />
+    </div>
   </div>
 </template>
 
@@ -19,6 +24,7 @@ export default {
     return {
       isLoading: true,
       filter: null,
+      isLoading: true,
     };
   },
   computed: {
@@ -27,8 +33,8 @@ export default {
     },
   },
   methods: {
-    loading(val) {
-      this.isLoading = val;
+    loading() {
+      this.isLoading = false;
     },
   },
   components: {

@@ -1,6 +1,14 @@
 <template>
   <div>
-    <el-select v-model="value1" :multiple-limit="2" multiple @change="sendGenres" placeholder="Select genre/s">
+    <el-select
+      v-model="value1"
+      :multiple-limit="2"
+      filterable
+      no-match-text="Can't find this genre"
+      multiple
+      @change="sendGenres"
+      placeholder="Select genre/s"
+    >
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -46,8 +54,8 @@ export default {
           label: "Rock",
         },
         {
-          value: "blues",
-          label: "Blues",
+          value: "techno",
+          label: "Techno",
         },
         {
           value: "house",
@@ -58,13 +66,13 @@ export default {
           label: "Jazz",
         },
       ],
-      value1: []
+      value1: [],
     };
   },
   methods: {
-      sendGenres() {
-          this.$emit('genre-selected', this.value1)
-      }
+    sendGenres() {
+      this.$emit("genre-selected", this.value1);
+    },
   },
 };
 </script>

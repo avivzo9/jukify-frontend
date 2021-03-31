@@ -9,6 +9,7 @@
     .home-genre-container {
         width: 100%;
         .genre-header {
+            max-width: 93rem;
             width: 100%;
             padding: 0 10px 0 10px;
             justify-content: space-between;
@@ -55,6 +56,18 @@
             letter-spacing: 2.15px;
             color: $clr1;
             font-size: 45px;
+        }
+    }
+}
+
+@include for-mobile-layout {
+    .home-cards-container {
+        .home-genre-container {
+            .genre-header {
+                button {
+                    padding: 0;
+                }
+            }
         }
     }
 }

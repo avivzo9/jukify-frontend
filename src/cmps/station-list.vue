@@ -21,12 +21,6 @@
 import stationPreview from "./station-preview.vue";
 export default {
   name: "station-list",
-  data() {
-    return {
-      stationsFiltered: null,
-      currStation: null,
-    };
-  },
   computed: {
     stations() {
       return this.$store.state.stationStore.stations;
@@ -34,7 +28,7 @@ export default {
   },
   async created() {
     await this.$store.dispatch({ type: "loadStations" });
-    if (this.stations.length) this.$emit("loader", false);
+    this.$emit("loader");
   },
   components: {
     stationPreview,

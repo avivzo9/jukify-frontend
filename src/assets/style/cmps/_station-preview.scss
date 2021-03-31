@@ -56,3 +56,17 @@
         }
     }
 }
+
+@include for-mobile-layout {
+    .station-preview-container {
+        .station-card {
+            width: 175px;
+            h2 {
+                max-width: 95%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+    }
+}

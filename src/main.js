@@ -12,7 +12,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faArrowsAltV, faHeart, faPauseCircle, faPen, faPlay, faPlus, faRandom, faSearch, faStepBackward, faStepForward, faTrashAlt, faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faPlay, faArrowsAltV, faPen, faPlus, faTrashAlt, faRandom, faSearch, faHeart, faVolumeUp, faStepForward, faPauseCircle, faVolumeMute, faStepBackward);
-library.add();
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueYoutube);

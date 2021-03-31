@@ -3,20 +3,13 @@
     <section class="container">
       <div class="nav sub-container">
         <div>
-          <router-link class="main-logo link" to="/">
-            <img
-              class="logo-image"
-              height="45px"
-              width="65.5"
-              src="http://www.88bit.net/img/Jukify_outline_white.png"
-              alt=""
-          /></router-link>
+          <router-link class="main-logo link" to="/"> <img class="logo-image" src="~@/assets/img/jukify-logo.png"></router-link>
         </div>
           <span @click="isMenu = !isMenu" class="menu">☰</span>
-        <div :style="{'max-width': menuDisplay}" class="nav-content">
-          <router-link @click="isMenu = !isMenu" class="link" to="/explore">Explore</router-link>
-          <router-link @click="isMenu = !isMenu" class="link" to="/create">Create station</router-link>
-          <router-link @click="isMenu = !isMenu" class="link" to="/profile">Profile</router-link>
+        <div @click="isMenu = false" :style="{'max-width': menuDisplay}" class="nav-content">
+          <router-link class="link" to="/explore">Explore</router-link>
+          <router-link class="link" to="/create">Create station</router-link>
+          <router-link class="link" to="/profile">Profile</router-link>
         </div>
       </div>
     </section>
@@ -36,7 +29,7 @@ export default {
   data() {
     return {
       isMenu: false,
-    };
+    }
   },
   computed: {
     menuDisplay() {
