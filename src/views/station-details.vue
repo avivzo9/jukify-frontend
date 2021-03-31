@@ -349,6 +349,9 @@ export default {
     toggleChat() {
       this.chatOpacity = !this.chatOpacity;
     },
+    changeTopic(id) {
+      socketService.emit("chat topic", id);
+    },
   },
   computed: {
     myList: {
@@ -380,7 +383,7 @@ export default {
     },
     opacityForChat() {
       // return (this.chatOpacity) ? 'block' : 'none';
-    }
+    },
   },
   async created() {
     try {
@@ -388,6 +391,7 @@ export default {
       const id = this.$route.params.stationName;
       this.$store.dispatch({ type: "setCurrStation", id });
       this.currStation = this.$store.state.stationStore.currStation;
+      this.changeTopic(this.currStation._id);
       socketService.on("station change-song", this.playSongForSockets);
       socketService.on("station remove-song", this.removeSongForSockets);
       socketService.on("station add-song", this.addToStationForSockets);

@@ -158,6 +158,7 @@ export default {
         this.player.playVideo();
         setInterval(() => {
           this.player.getCurrentTime().then((duration) => {
+            if (!duration) return
             var minutes = Math.floor(parseInt(duration.toFixed(0)) / 60);
             var seconds = parseInt(duration.toFixed(0)) - minutes * 60;
             if (duration - minutes * 60 > 59.9) {

@@ -83,6 +83,10 @@
     }
 }
 
+.el-slider__bar {
+    background-color: $clr1 !important;
+}
+
 .rotating {
     animation: rotating 5s linear infinite;
 }
@@ -193,7 +197,7 @@ input[type=range] {
 
 @include for-mobile-layout {
     .song-player {
-        grid-template-columns: 1fr 33vw;
+        grid-template-columns: 60vw 40vw;
         .song-image {
             display: none;
         }

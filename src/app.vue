@@ -12,11 +12,11 @@
               alt=""
           /></router-link>
         </div>
-        <span @click="isMenu = !isMenu" class="menu">☰</span>
-        <div :style="{ 'max-width': menuDisplay }" class="nav-content">
-          <router-link class="link" to="/explore">Explore</router-link>
-          <router-link class="link" to="/create">Create station</router-link>
-          <router-link class="link" to="/profile">Profile</router-link>
+          <span @click="isMenu = !isMenu" class="menu">☰</span>
+        <div :style="{'max-width': menuDisplay}" class="nav-content">
+          <router-link @click="isMenu = !isMenu" class="link" to="/explore">Explore</router-link>
+          <router-link @click="isMenu = !isMenu" class="link" to="/create">Create station</router-link>
+          <router-link @click="isMenu = !isMenu" class="link" to="/profile">Profile</router-link>
         </div>
       </div>
     </section>

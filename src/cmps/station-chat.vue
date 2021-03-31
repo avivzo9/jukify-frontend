@@ -73,7 +73,6 @@ export default {
   },
   created() {
     socketService.on("chat addMsg", this.addMsg);
-    this.changeTopic(this.currStation._id);
   },
   destroyed() {
     socketService.off("chat addMsg", this.addMsg);
