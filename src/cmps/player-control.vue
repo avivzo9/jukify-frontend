@@ -36,7 +36,7 @@
           :max="songPlayer.songLength"
         />
         <span v-if="songPlayer.duration">{{ songPlayer.duration }}</span>
-        <span v-else>00:00</span>
+        <span v-else>0:00</span>
       </div>
     </div>
     <div class="music-btns row-layout-container">
@@ -62,6 +62,7 @@
 export default {
   data() {
     return {
+      interval: null,
       songPlayer: {
         volumeRange: 100,
         currTime: null,
@@ -97,18 +98,20 @@ export default {
     },
     async changeSong(dif) {
       try {
-        socketService.emit("player to-next-previouse-song", dif);
+        await socketService.emit("player to-next-previouse-song", dif);
       } catch (err) {
         throw err;
       }
     },
     async changeSongForSockets(dif) {
       try {
+        clearInterval(this.interval);
         const payload = { dif };
         await this.$store.dispatch({ type: "changeSong", payload });
         this.songPlayer.currTime = 0;
         this.$nextTick(() => {
-          this.player.playVideo();
+          this.playVideo();
+          this.$root.$emit("startPlaySong");
         });
         this.$store.getters.getSongName;
       } catch (err) {
@@ -125,6 +128,48 @@ export default {
     },
     async setSongTimeForSockets(time) {
       this.player.seekTo(time);
+    },
+    forMounted(num = 0) {
+      try {
+        this.$nextTick(() => {
+          this.player.playVideo();
+          this.interval = setInterval(() => {
+            this.player.getCurrentTime().then((currTime) => {
+              if (!currTime) return;
+              var minutes = Math.floor(parseInt(currTime.toFixed(0)) / 60);
+              var seconds = parseInt(currTime.toFixed(0)) - minutes * 60;
+              if (
+                this.songPlayer.currTime ===
+                this.songPlayer.songLength.toFixed(0)
+              ) {
+                this.changeSong(1);
+                return;
+              }
+              if (currTime - minutes * 60 > 59.9) {
+                seconds = 0;
+              }
+              if (seconds < 10)
+                this.songPlayer.formattedTime = minutes + ":0" + seconds;
+              else this.songPlayer.formattedTime = minutes + ":" + seconds;
+              this.songPlayer.currTime = currTime.toFixed(0);
+            });
+          }, 100);
+          setTimeout(() => {
+            this.player.getDuration().then((duration) => {
+              this.songPlayer.songLength = duration;
+              var minutes = duration / 60;
+              minutes = Math.floor(minutes);
+              var seconds = duration - minutes * 60;
+              seconds = Math.round(seconds.toFixed(0));
+              if (seconds < 10)
+                this.songPlayer.duration = minutes + ":0" + seconds;
+              else this.songPlayer.duration = minutes + ":" + seconds;
+            });
+          }, num);
+        });
+        this.playVideo(this.songId);
+        this.$store.getters.getSongName;
+      } catch {}
     },
   },
   computed: {
@@ -150,47 +195,7 @@ export default {
     },
   },
   mounted() {
-    this.$root.$on("startPlaySong", () => {
-      this.$nextTick(() => {
-        this.player.playVideo();
-        const int = setInterval(() => {
-          this.player.getCurrentTime().then((currTime) => {
-            if (!currTime) return;
-            var minutes = Math.floor(parseInt(currTime.toFixed(0)) / 60);
-            var seconds = parseInt(currTime.toFixed(0)) - minutes * 60;
-            if (
-              this.songPlayer.currTime === this.songPlayer.songLength.toFixed(0)
-            ) {
-              this.changeSong(1);
-              clearInterval(int);
-              return;
-            }
-            if (currTime - minutes * 60 > 59.9) {
-              seconds = 0;
-            }
-            if (seconds < 10)
-              this.songPlayer.formattedTime = minutes + ":0" + seconds;
-            else this.songPlayer.formattedTime = minutes + ":" + seconds;
-            this.songPlayer.currTime = currTime.toFixed(0);
-          });
-        }, 100);
-        setTimeout(() => {
-          this.player.getDuration().then((duration) => {
-            this.songPlayer.songLength = duration;
-            var minutes = duration / 60;
-            minutes = Math.floor(minutes);
-            var seconds = duration - minutes * 60;
-            seconds = Math.round(seconds.toFixed(0));
-            console.log("seconds:", seconds);
-            if (seconds < 10)
-              this.songPlayer.duration = minutes + ":0" + seconds;
-            else this.songPlayer.duration = minutes + ":" + seconds;
-          });
-        }, 1500);
-      });
-      this.playVideo(this.songId);
-      this.$store.getters.getSongName;
-    });
+    this.$root.$on("startPlaySong", () => this.forMounted(1500));
   },
   async created() {
     try {

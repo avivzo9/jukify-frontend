@@ -410,7 +410,6 @@ export default {
     socketService.off("station like", this.addStationLikeForSockets);
     socketService.off("station shuffleSongs", this.shuffleSongsForSockets);
     socketService.off("station drag-n-drop", this.setDragNDropForSockets);
-
     socketService.terminate();
   },
   components: {
