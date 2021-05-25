@@ -135,7 +135,7 @@ export default {
           this.player.playVideo();
           this.interval = setInterval(() => {
             this.player.getCurrentTime().then((currTime) => {
-              if (!currTime) return;
+              if (!currTime || !this.songPlayer.songLength) return;
               var minutes = Math.floor(parseInt(currTime.toFixed(0)) / 60);
               var seconds = parseInt(currTime.toFixed(0)) - minutes * 60;
               if (
