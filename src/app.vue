@@ -33,8 +33,8 @@ export default {
   },
   computed: {
     menuDisplay() {
-      return (this.isMenu) ? '100vw' : '0'
-    }
+      return this.isMenu ? "100vw" : "0";
+    },
   },
   async created() {
     await this.$store.dispatch({ type: "loadStations" });
