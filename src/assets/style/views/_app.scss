@@ -15,7 +15,7 @@
             filter: brightness(85%);
         }
         img {
-            width: 9vw;
+            width: 138px;
             padding: 5px 5px 5px 0;
             height: 60px;
         }
@@ -36,14 +36,14 @@
         transition: max-width 1s;
         transform: translateX(0%);
         z-index: 30;
-        >* {
+        > * {
             margin: 0;
             text-align: center;
             width: 100%;
             padding: 40px 0;
         }
         a {
-            transition: .3s;
+            transition: 0.3s;
             color: $clr2;
             font-size: 15px;
             text-transform: uppercase;
@@ -83,7 +83,7 @@
     }
     &:first-child {
         background-color: $clr4;
-        &>* {
+        & > * {
             color: $clr1;
         }
         .el-message-box__title {
@@ -111,8 +111,8 @@
     height: 76.4vh;
     background-color: $clr4;
     img {
-        width: 20vw;
-        height: 60%;
+        width: 307px;
+        height: 330px;
     }
 }
 
@@ -135,7 +135,7 @@
             width: 45vw;
             height: 72.4vh;
             background-color: $clr3;
-            >* {
+            > * {
                 margin: 0;
                 text-align: center;
                 width: 100%;
@@ -154,8 +154,5 @@
         width: 99vw;
         height: 72.6vh;
         background-color: $clr4;
-        img {
-            width: 80%;
-        }
     }
 }
