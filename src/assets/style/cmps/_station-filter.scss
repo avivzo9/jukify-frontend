@@ -1,7 +1,7 @@
 .filter-genre-container {
     margin: 1em;
     margin-top: 0;
-    >* {
+    > * {
         width: 80px;
         border-radius: 30px;
         &:hover {
@@ -17,7 +17,7 @@
 }
 
 .filter-container {
-     :first-child {
+    :first-child {
         input {
             border-radius: 10px;
             width: 30em;
@@ -25,22 +25,50 @@
     }
 }
 
-@include for-mobile-layout {
+@include for-wide-layout {
     .filter-genre-container {
+        width: 100%;
         max-width: 88vw;
         display: -webkit-box;
         overflow: auto;
-        margin-top: 2vh;
-         :first-child {
+        margin: 15px 0;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        > :first-child {
             margin-left: 0;
         }
-        >* {
+        > * {
+            display: list-item;
+            min-width: 80px;
+        }
+        > :first-child {
+            margin-left: 20px;
+        }
+    }
+    .filter-container {
+        width: 100%;
+    }
+}
+
+@include for-mobile-layout {
+    .filter-genre-container {
+        overflow: auto;
+        width: 100%;
+        display: -webkit-box;
+        margin-top: 2vh;
+        :first-child {
+            margin-left: 0;
+        }
+        > * {
             display: list-item;
             min-width: 80px;
         }
     }
     .filter-container {
-         :first-child {
+        :first-child {
             input {
                 margin-top: 2vh;
                 width: 90vw;

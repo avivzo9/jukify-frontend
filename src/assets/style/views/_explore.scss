@@ -14,3 +14,12 @@
         height: 100%;
     }
 }
+
+@include for-wide-layout {
+    .explore-container{
+        width: 100%;
+        .explore-header {
+            width: 100%;
+        }
+    }
+}

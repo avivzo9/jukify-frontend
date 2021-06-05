@@ -74,9 +74,16 @@ export default {
   },
   methods: {
     async togglePlay() {
-      socketService.emit("player to-toggle-play-song");
+      try {
+        // const playing = await this.$store.dispatch({ type: "togglePlay" });
+        // playing ? this.player.playVideo() : this.player.pauseVideo();
+        socketService.emit("player to-toggle-play-song");
+      } catch (err) {
+        console.log("err:", err);
+      }
     },
     async togglePlayForSockets() {
+      console.log("play/pause?");
       try {
         const playing = await this.$store.dispatch({ type: "togglePlay" });
         playing ? this.player.playVideo() : this.player.pauseVideo();
@@ -85,8 +92,15 @@ export default {
       }
     },
     async setSongVolume(vol) {
-      const volume = await this.$store.dispatch({ type: "setSongVolume", vol });
-      return this.player.setVolume(volume);
+      try {
+        const volume = await this.$store.dispatch({
+          type: "setSongVolume",
+          vol,
+        });
+        return this.player.setVolume(volume);
+      } catch (err) {
+        console.log("err:", err);
+      }
     },
     async playVideo() {
       await this.$store.dispatch({
@@ -212,10 +226,7 @@ export default {
   destroyed() {
     socketService.off("player toggle-play-song", this.togglePlayForSockets);
     socketService.off("player set-song-time", this.setSongTimeForSockets);
-    socketService.off(
-      "player next-previouse-song",
-      this.changeSongForSockets(dif)
-    );
+    socketService.off("player next-previouse-song", this.changeSongForSockets);
     socketService.terminate();
   },
 };

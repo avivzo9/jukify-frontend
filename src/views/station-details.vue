@@ -1,6 +1,5 @@
 <template>
   <section class="details-container" v-if="currStation">
-    
     <div class="station-details column-layout-container">
       <div class="station-img column-layout-container">
         <img :src="currStation.imgUrl" />
@@ -116,10 +115,8 @@
     </div>
   </section>
   <div v-else class="loader-container row-layout-container">
-      <img
-        src="../assets/img/loader.gif"
-      />
-    </div>
+    <img src="../assets/img/loader.gif" />
+  </div>
 </template>
 
 <script>
@@ -391,9 +388,11 @@ export default {
       await this.$store.dispatch({ type: "loadStations" });
       const id = this.$route.params.stationName;
       await this.$store.dispatch({ type: "setCurrStation", id });
-      this.isLoading = false;
       this.currStation = this.$store.state.stationStore.currStation;
       this.changeTopic(this.currStation._id);
+      // await this.changeTopic(this.currStation._id);
+      // socketService.emit("chat topic", this.currStation._id);
+      this.isLoading = false;
       socketService.on("station change-song", this.playSongForSockets);
       socketService.on("station remove-song", this.removeSongForSockets);
       socketService.on("station add-song", this.addToStationForSockets);

@@ -11,6 +11,25 @@
     }
 }
 
+@include for-wide-layout {
+    .station-cards-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 55px 0px;
+    }
+}
+
+@include for-normal-layout {
+    .station-cards-container {
+        gap: 25px 0px;
+    }
+}
+
+@include for-narrow-layout {
+    .station-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @include for-mobile-layout {
     .station-cards-container {
         grid-template-columns: 40vw 40vw;
