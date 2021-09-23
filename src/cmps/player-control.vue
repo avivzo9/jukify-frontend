@@ -83,7 +83,6 @@ export default {
       }
     },
     async togglePlayForSockets() {
-      console.log("play/pause?");
       try {
         const playing = await this.$store.dispatch({ type: "togglePlay" });
         playing ? this.player.playVideo() : this.player.pauseVideo();
@@ -103,9 +102,7 @@ export default {
       }
     },
     async playVideo() {
-      await this.$store.dispatch({
-        type: "playVideo",
-      });
+      await this.$store.dispatch({ type: "playVideo" });
       this.$nextTick(() => {
         this.player.playVideo();
       });

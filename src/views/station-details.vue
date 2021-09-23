@@ -160,7 +160,7 @@ export default {
           type: "setVideoId",
           videoId: this.videoId,
         });
-        this.$root.$emit("startPlaySong");
+        setTimeout(() => this.$root.$emit("startPlaySong"), 100);
       } catch (err) {}
     },
     likes(likes) {

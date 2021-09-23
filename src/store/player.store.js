@@ -83,40 +83,40 @@ export const playerStore = {
                 state.commit({ type: 'togglePlay' })
                 return state.state.songPlayer.isPlaying;
 
-            } catch {}
+            } catch { }
         },
         setSongVolume(state, { vol }) {
             try {
                 state.commit({ type: 'setSongVolume', vol })
                 return state.state.songPlayer.volumeRange
-            } catch {}
+            } catch { }
         },
         playVideo(state) {
             try {
                 state.commit({ type: 'playVideo' })
                 return state.songPlayer.songName
-            } catch {}
+            } catch { }
         },
         changeSong(state, payload) {
             try {
                 state.commit({ type: 'changeSong', payload })
-            } catch {}
+            } catch { }
         },
         muteSong(state) {
             try {
                 state.commit({ type: 'muteSong' })
                 return state.state.songPlayer.isMuted
-            } catch {}
+            } catch { }
         },
         setStation(state, { currStation }) {
             try {
                 state.commit({ type: 'setStation', currStation })
-            } catch {}
+            } catch { }
         },
         setVideoId(state, { videoId }) {
             try {
                 state.commit({ type: 'setVideoId', videoId })
-            } catch {}
+            } catch { }
         },
     }
 }

@@ -2,7 +2,7 @@ import { userService } from '../services/userService.js'
 export const userStore = {
     strict: true,
     state: {
-        user: 'guest',
+        user: null,
         msgToUser: null
     },
     getters: {
