@@ -41,7 +41,7 @@ async function askSearch(txt) {
     }
 }
 
-async function query(filterBy = {}) {
+async function query(filterBy = { }) {
     try {
         var query = '?'
         if (filterBy.byName) query += 'name=' + filterBy.byName + '&'
