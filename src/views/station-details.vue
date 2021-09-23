@@ -150,6 +150,7 @@ export default {
     },
     async playSongForSockets(id) {
       try {
+        console.log(this.$store.state.playerStore);
         if (!id) id = this.currStation.songs[0].videoId;
         this.videoId = id;
         await this.$store.dispatch({
@@ -160,7 +161,10 @@ export default {
           type: "setVideoId",
           videoId: this.videoId,
         });
-        setTimeout(() => this.$root.$emit("startPlaySong"), 100);
+        setTimeout(() => {
+          this.$root.$emit("startPlaySong");
+          console.log(this.$store.state.playerStore);
+        }, 200);
       } catch (err) {}
     },
     likes(likes) {

@@ -107,24 +107,27 @@ export default {
         this.player.playVideo();
       });
     },
-    async changeSong(dif) {
+    changeSong(dif) {
       try {
-        await socketService.emit("player to-next-previouse-song", dif);
+        socketService.emit("player to-next-previouse-song", dif);
       } catch (err) {
         throw err;
       }
     },
     async changeSongForSockets(dif) {
+      console.log("dif:", dif);
       try {
         clearInterval(this.interval);
+        this.interval = null;
         const payload = { dif };
-        await this.$store.dispatch({ type: "changeSong", payload });
-        this.songPlayer.currTime = 0;
-        this.$nextTick(() => {
-          this.playVideo();
-          this.$root.$emit("startPlaySong");
+        this.$store.dispatch({ type: "changeSong", payload }).then(() => {
+          this.songPlayer.currTime = 0;
+          this.$nextTick(() => {
+            this.playVideo();
+            this.$root.$emit("startPlaySong");
+          });
+          this.$store.getters.getSongName;
         });
-        this.$store.getters.getSongName;
       } catch (err) {
         throw err;
       }
@@ -134,7 +137,7 @@ export default {
       this.songPlayer.isMuted = !this.songPlayer.isMuted;
       return isMute ? this.player.mute() : this.player.unMute();
     },
-    async setSongTime() {
+    setSongTime() {
       socketService.emit("player to-set-song-time", this.songPlayer.currTime);
     },
     async setSongTimeForSockets(time) {
@@ -149,9 +152,11 @@ export default {
               if (!currTime || !this.songPlayer.songLength) return;
               var minutes = Math.floor(parseInt(currTime.toFixed(0)) / 60);
               var seconds = parseInt(currTime.toFixed(0)) - minutes * 60;
+              const songPlayercurrTimeCopy = JSON.stringify(
+                JSON.parse(this.songPlayer.currTime)
+              );
               if (
-                this.songPlayer.currTime ===
-                this.songPlayer.songLength.toFixed(0)
+                songPlayercurrTimeCopy === this.songPlayer.songLength.toFixed(0)
               ) {
                 this.changeSong(1);
                 return;
@@ -164,7 +169,7 @@ export default {
               else this.songPlayer.formattedTime = minutes + ":" + seconds;
               this.songPlayer.currTime = currTime.toFixed(0);
             });
-          }, 100);
+          }, 200);
           setTimeout(() => {
             this.player.getDuration().then((duration) => {
               this.songPlayer.songLength = duration;

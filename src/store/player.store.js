@@ -45,8 +45,8 @@ export const playerStore = {
             state.currStation = payload.currStation;
         },
         setVideoId(state, payload) {
-            state.songPlayer.isPlaying = true;
             state.songId = payload.videoId;
+            state.songPlayer.isPlaying = true;
         },
         playVideo(state) {
             state.songId = state.songId
