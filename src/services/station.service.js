@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { storageService } from './async-storage.service.js'
-import { gStations } from '../data/station'
 import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
 
