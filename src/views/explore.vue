@@ -23,8 +23,6 @@ export default {
   data() {
     return {
       isLoading: true,
-      filter: null,
-      isLoading: true,
     };
   },
   computed: {
