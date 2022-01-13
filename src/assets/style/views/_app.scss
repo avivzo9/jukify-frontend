@@ -117,6 +117,17 @@
     }
 }
 
+.loader-chat-container {
+    position: absolute;
+    width: 400px;
+    height: 715px;
+    background-color: $clr4;
+    img {
+        width: 307px;
+        height: 330px;
+    }
+}
+
 @include for-mobile-layout {
     .nav {
         .main-logo {

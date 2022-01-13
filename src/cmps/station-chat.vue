@@ -15,7 +15,12 @@
       <h3>Quiet here...</h3>
     </div>
     <form id="form" @submit.prevent="sendMsg">
-      <input id="input" v-model="msg.txt" placeholder="Type a message" autocomplete="off" />
+      <input
+        id="input"
+        v-model="msg.txt"
+        placeholder="Type a message"
+        autocomplete="off"
+      />
       <button>Send</button>
     </form>
   </div>
@@ -63,8 +68,8 @@ export default {
       socketService.emit("chat topic", id);
     },
     closeChat() {
-      this.$emit('close-chat')
-    }
+      this.$emit("close-chat");
+    },
   },
   computed: {
     msgs() {

@@ -69,6 +69,9 @@
     </div>
     <div class="chat-room column-layout-container">
       <station-chat @close-chat="toggleChat" :currStation="currStation" />
+      <div v-if="isChatLoader" class="loader-chat-container row-layout-container">
+        <img src="../assets/img/loader.gif" />
+      </div>
     </div>
     <div class="songs-container row-layout-container">
       <div v-if="currStation" class="station-songs-container">
@@ -141,6 +144,7 @@ export default {
       isSongDelete: false,
       chatOpacity: false,
       isLoading: true,
+      isChatLoader: true,
     };
   },
   methods: {
@@ -400,6 +404,7 @@ export default {
       socketService.on("station shuffleSongs", this.shuffleSongsForSockets);
       socketService.on("station drag-n-drop", this.setDragNDropForSockets);
       this.debounceInput = this.debounce(this.searchSongs);
+      setTimeout(() => (this.isChatLoader = false), 1000);
     } catch {}
   },
   destroyed() {
